@@ -12,6 +12,7 @@
             --header-background: rgba(255, 255, 255, 0.8); /* 浅色模式头部背景色 */
             --nav-background: black; /* 导航栏背景色 */
             --nav-text-color: white; /* 导航栏文字颜色 */
+            --header-image: url('watson英文字体_复制.pdf'); /* 浅色模式图片 */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -21,6 +22,7 @@
                 --header-background: rgba(0, 0, 0, 0.8); /* 深色模式头部背景色 */
                 --nav-background: #222; /* 深色模式导航栏背景色 */
                 --nav-text-color: white; /* 深色模式导航栏文字颜色 */
+                --header-image: url('watson英文字体_白色psb.png'); /* 深色模式图片 */
             }
         }
 
@@ -42,6 +44,12 @@
             transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
         }
 
+        header img {
+            width: 100%; 
+            max-width: 600px; 
+            transition: opacity 0.3s ease-in-out; /* 图片透明度过渡效果 */
+        }
+
         nav {
             background-color: var(--nav-background);
             padding: 0px 0; /* 导航栏的内边距设置为0 */
@@ -56,7 +64,7 @@
             display: inline-block; /* 使链接看起来像按钮 */
             height: 40px; /* 设置按钮高度 */
             line-height: 40px; /* 垂直居中 */
-            background-color: transparent; /* 按钮背景颜色 */
+            background-color: black; /* 按钮背景颜色与导航栏一致 */
             border: none; /* 去掉边框 */
             transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
         }
@@ -71,7 +79,7 @@
             padding: 40px;
             margin: 20px auto;
             max-width: 800px;
-            background-color: var(--background-color);
+            background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -85,11 +93,14 @@
             display: block; /* 显示当前激活的部分 */
         }
 
-        @media (max-width: 600px) {
-            header img {
-                width: 100%; /* 移动端调整图片宽度 */
-                max-width: 100%;
-            }
+        /* 固定导航栏样式 */
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color 0.3s, color 0.3s;
         }
     </style>
     <script>
@@ -105,21 +116,22 @@
             }
         }
 
-        // 滚动事件处理
+        // 监听滚动事件，处理导航栏的固定和图片变化
         window.onscroll = function() {
             const header = document.querySelector('header');
             const nav = document.querySelector('nav');
             const img = header.querySelector('img');
-            const scrollTop = window.scrollY;
 
-            if (scrollTop > 0) {
-                nav.style.position = 'fixed'; // 固定导航栏
-                nav.style.top = '0'; // 导航栏距离顶部为0
-                img.style.width = `${Math.max(100 - scrollTop / 2, 0)}%`; // 缩小图片
-                img.style.transition = 'width 0.3s'; // 缩小过渡效果
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                nav.classList.add('fixed'); // 添加固定类
+                img.style.opacity = '0'; // 隐藏图片
+                setTimeout(() => {
+                    img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image'); // 切换图片
+                    img.style.opacity = '1'; // 显示新图片
+                }, 300); // 300毫秒后切换图片
             } else {
-                nav.style.position = 'static'; // 导航栏回到原位
-                img.style.width = '100%'; // 恢复图片原始大小
+                nav.classList.remove('fixed'); // 移除固定类
+                img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image'); // 恢复原图片
             }
         };
     </script>
@@ -131,10 +143,10 @@
     
     <!-- 导航栏 -->
     <nav>
-        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
-        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
-        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
-        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
     </nav>
     
     <main>
