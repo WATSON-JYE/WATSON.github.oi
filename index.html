@@ -13,6 +13,7 @@
             --nav-background: black; /* 导航栏背景色 */
             --nav-text-color: white; /* 导航栏文字颜色 */
             --header-image: 'watson英文字体_黑色.png'; /* 浅色模式图片 */
+            --link-color: #003c71; /* 浅色模式链接颜色 */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -23,6 +24,7 @@
                 --nav-background: #222; /* 深色模式导航栏背景色 */
                 --nav-text-color: white; /* 深色模式导航栏文字颜色 */
                 --header-image: 'watson英文字体_白色psb.png'; /* 深色模式图片 */
+                --link-color: #68b6fc; /* 深色模式链接颜色 */
             }
         }
 
@@ -55,13 +57,9 @@
             padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
             transition: background-color 0.3s; /* 添加过渡效果 */
-            display: none; /* 默认隐藏导航栏 */
-        }
-
-        nav.fixed {
-            display: block; /* 滚动时显示导航栏 */
-            position: fixed;
-            top: 0;
+            display: block; /* 默认显示导航栏 */
+            position: fixed; /* 固定位置 */
+            top: 0; /* 顶部对齐 */
             left: 0;
             right: 0;
             z-index: 1000;
@@ -103,6 +101,15 @@
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
+
+        /* 链接样式 */
+        a {
+            color: var(--link-color); /* 链接颜色 */
+        }
+
+        a:hover {
+            text-decoration: underline; /* 悬停时下划线 */
+        }
     </style>
     <script>
         // JavaScript函数用于显示相应的内容部分
@@ -135,16 +142,12 @@
             const img = header.querySelector('img');
 
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                nav.classList.add('fixed'); // 添加固定类
-                nav.style.display = 'block'; // 显示导航栏
                 img.style.opacity = '0'; // 隐藏图片
                 setTimeout(() => {
                     img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 切换图片
                     img.style.opacity = '1'; // 显示新图片
                 }, 300); // 300毫秒后切换图片
             } else {
-                nav.classList.remove('fixed'); // 移除固定类
-                nav.style.display = 'none'; // 隐藏导航栏
                 img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 恢复原图片
             }
         };
@@ -193,8 +196,3 @@
                 <li><a href="https://twitter.com/Watsonwsj2src">Twitter</a></li>
                 <li><a href="https://v.douyin.com/irExtN5D/">抖音个人号</a></li>
                 <li><a href="https://v.douyin.com/irEQfjhn/">抖音作品号</a></li>
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
