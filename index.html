@@ -40,9 +40,26 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         section {
+            display: none; /* 默认隐藏所有部分 */
             margin-bottom: 40px; /* 各部分之间的间距 */
         }
+        section.active {
+            display: block; /* 显示当前激活的部分 */
+        }
     </style>
+    <script>
+        // JavaScript函数用于显示相应的内容部分
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active'); // 隐藏所有部分
+            });
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active'); // 显示当前部分
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -51,12 +68,19 @@
     
     <!-- 导航栏 -->
     <nav>
-        <a href="#projects">项目展示</a>
-        <a href="#contact">联系方式</a>
-        <a href="#social">社交媒体</a>
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
     </nav>
     
     <main>
+        <!-- 首页部分 -->
+        <section id="home" class="active">
+            <h2>首页</h2>
+            <p>欢迎来到我的个人网站！这里是我的作品、联系方式和社交媒体信息。</p>
+        </section>
+        
         <!-- 项目展示部分 -->
         <section id="projects">
             <h2>项目展示</h2>
