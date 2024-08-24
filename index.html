@@ -6,94 +6,93 @@
     <title>WATSON</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --background-color: white; /* 浅色模式背景色 */
+            --text-color: black; /* 浅色模式文字颜色 */
+            --header-background: rgba(255, 255, 255, 0.8); /* 浅色模式头部背景色 */
+            --nav-background: black; /* 导航栏背景色 */
+            --nav-text-color: white; /* 导航栏文字颜色 */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #181818; /* 深色模式背景色 */
+                --text-color: white; /* 深色模式文字颜色 */
+                --header-background: rgba(0, 0, 0, 0.8); /* 深色模式头部背景色 */
+                --nav-background: #222; /* 深色模式导航栏背景色 */
+                --nav-text-color: white; /* 深色模式导航栏文字颜色 */
+            }
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white; /* 设置背景颜色为白色 */
-            transition: background-color 0.3s; /* 背景颜色过渡效果 */
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
         }
+
         header {
-            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
-            color: black;
+            background-color: var(--header-background);
+            color: var(--text-color);
+            padding: 20px;
             text-align: center;
-            transition: transform 0.3s, opacity 0.3s; /* 过渡效果 */
+            margin-bottom: 10px; /* 调整为更小的边距 */
+            transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
         }
+
         nav {
-            background-color: black; /* 导航栏底色设置为黑色 */
-            padding: 5px 0; /* 导航栏的内边距设置为0 */
+            background-color: var(--nav-background);
+            padding: 0px 0; /* 导航栏的内边距设置为0 */
             text-align: center;
-            position: relative; /* 让导航栏相对定位 */
-            transition: top 0.3s; /* 导航栏移动的过渡效果 */
         }
+
         nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: white; /* 默认文字颜色为白色 */
+            color: var(--nav-text-color);
             padding: 10px 20px; /* 按钮内边距 */
             display: inline-block; /* 使链接看起来像按钮 */
             height: 40px; /* 设置按钮高度 */
             line-height: 40px; /* 垂直居中 */
-            background-color: black; /* 按钮背景颜色与导航栏一致 */
+            background-color: transparent; /* 按钮背景颜色 */
             border: none; /* 去掉边框 */
             transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
         }
+
         nav a:hover {
             background-color: white; /* 悬停时背景颜色变为白色 */
             color: black; /* 悬停时文字颜色变为黑色 */
             transform: scale(1.1); /* 悬停时放大文字 */
         }
+
         main {
             padding: 40px;
             margin: 20px auto;
             max-width: 800px;
-            background-color: white;
+            background-color: var(--background-color);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         section {
             display: none; /* 默认隐藏所有部分 */
             margin-bottom: 40px; /* 各部分之间的间距 */
         }
+
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
+
+        @media (max-width: 600px) {
+            header img {
+                width: 100%; /* 移动端调整图片宽度 */
+                max-width: 100%;
+            }
+        }
     </style>
     <script>
-        let isNavFixed = false; // 导航栏是否固定
-        let lastScrollY = 0; // 上一次滚动位置
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const nav = document.querySelector('nav');
-            const img = header.querySelector('img');
-
-            if (window.scrollY > lastScrollY) { // 向下滚动
-                if (!isNavFixed && window.scrollY > header.offsetHeight) {
-                    isNavFixed = true;
-                    nav.style.position = 'fixed';
-                    nav.style.top = '0';
-                    nav.style.width = '100%';
-
-                    // 缩小图片并反转颜色
-                    img.style.transform = 'scale(0.1)';
-                    img.style.opacity = '0'; // 透明度为0
-                    nav.style.padding = '5px 0'; // 设置导航栏内边距
-                }
-            } else { // 向上滚动
-                if (isNavFixed) {
-                    isNavFixed = false;
-                    nav.style.position = 'relative';
-                    nav.style.top = 'auto';
-
-                    // 恢复图片大小和可见性
-                    img.style.transform = 'scale(1)';
-                    img.style.opacity = '1'; // 恢复透明度为1
-                }
-            }
-            lastScrollY = window.scrollY; // 更新滚动位置
-        });
-
         // JavaScript函数用于显示相应的内容部分
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
@@ -105,19 +104,37 @@
                 activeSection.classList.add('active'); // 显示当前部分
             }
         }
+
+        // 滚动事件处理
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+            const img = header.querySelector('img');
+            const scrollTop = window.scrollY;
+
+            if (scrollTop > 0) {
+                nav.style.position = 'fixed'; // 固定导航栏
+                nav.style.top = '0'; // 导航栏距离顶部为0
+                img.style.width = `${Math.max(100 - scrollTop / 2, 0)}%`; // 缩小图片
+                img.style.transition = 'width 0.3s'; // 缩小过渡效果
+            } else {
+                nav.style.position = 'static'; // 导航栏回到原位
+                img.style.width = '100%'; // 恢复图片原始大小
+            }
+        };
     </script>
 </head>
 <body>
     <header>
-        <img src="watson英文字体_复制.pdf" alt="欢迎来到我的个人网站" style="width: 100%; max-width: 600px;"/>
+        <img src="watson英文字体_复制.pdf" alt="欢迎来到我的个人网站"/>
     </header>
     
     <!-- 导航栏 -->
     <nav>
-        <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
-        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
-        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
-        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
     </nav>
     
     <main>
