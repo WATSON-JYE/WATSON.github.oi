@@ -20,16 +20,23 @@
             margin-bottom: 20px;
         }
         nav {
-            margin: 20px 0;
+            background-color: black; /* 导航栏底色设置为黑色 */
+            padding: 10px 0;
             text-align: center;
         }
         nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: #2196F3; /* 导航链接颜色 */
+            color: white; /* 导航链接颜色为白色 */
+            padding: 10px 20px; /* 按钮内边距 */
+            border: 2px solid transparent; /* 边框透明 */
+            border-radius: 5px; /* 圆角 */
+            transition: background-color 0.3s, border-color 0.3s; /* 过渡效果 */
         }
         nav a:hover {
-            text-decoration: underline;
+            background-color: white; /* 悬停时背景颜色为白色 */
+            color: black; /* 悬停时文字颜色为黑色 */
+            border-color: black; /* 悬停时边框颜色为黑色 */
         }
         main {
             padding: 40px;
