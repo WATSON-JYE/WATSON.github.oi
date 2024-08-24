@@ -12,7 +12,7 @@
             --header-background: rgba(255, 255, 255, 0.8); /* 浅色模式头部背景色 */
             --nav-background: black; /* 导航栏背景色 */
             --nav-text-color: white; /* 导航栏文字颜色 */
-            --header-image: url('watson英文字体_复制.pdf'); /* 浅色模式图片 */
+            --header-image: 'watson英文字体_复制.pdf'; /* 浅色模式图片 */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -22,7 +22,7 @@
                 --header-background: rgba(0, 0, 0, 0.8); /* 深色模式头部背景色 */
                 --nav-background: #222; /* 深色模式导航栏背景色 */
                 --nav-text-color: white; /* 深色模式导航栏文字颜色 */
-                --header-image: url('watson英文字体_白色psb.png'); /* 深色模式图片 */
+                --header-image: 'watson英文字体_白色psb.png'; /* 深色模式图片 */
             }
         }
 
@@ -126,12 +126,12 @@
                 nav.classList.add('fixed'); // 添加固定类
                 img.style.opacity = '0'; // 隐藏图片
                 setTimeout(() => {
-                    img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image'); // 切换图片
+                    img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 切换图片
                     img.style.opacity = '1'; // 显示新图片
                 }, 300); // 300毫秒后切换图片
             } else {
                 nav.classList.remove('fixed'); // 移除固定类
-                img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image'); // 恢复原图片
+                img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 恢复原图片
             }
         };
     </script>
