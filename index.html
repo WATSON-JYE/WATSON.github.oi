@@ -55,6 +55,16 @@
             padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
             transition: background-color 0.3s; /* 添加过渡效果 */
+            display: none; /* 默认隐藏导航栏 */
+        }
+
+        nav.fixed {
+            display: block; /* 滚动时显示导航栏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -93,16 +103,6 @@
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
-
-        /* 固定导航栏样式 */
-        .fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: background-color 0.3s, color 0.3s;
-        }
     </style>
     <script>
         // JavaScript函数用于显示相应的内容部分
@@ -126,7 +126,6 @@
 
             // 确保在加载时也设置图片
             img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, "");
-            nav.classList.add('fixed'); // 默认导航栏固定
         };
 
         // 监听滚动事件，处理导航栏的固定和图片变化
@@ -137,6 +136,7 @@
 
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
                 nav.classList.add('fixed'); // 添加固定类
+                nav.style.display = 'block'; // 显示导航栏
                 img.style.opacity = '0'; // 隐藏图片
                 setTimeout(() => {
                     img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 切换图片
@@ -144,6 +144,7 @@
                 }, 300); // 300毫秒后切换图片
             } else {
                 nav.classList.remove('fixed'); // 移除固定类
+                nav.style.display = 'none'; // 隐藏导航栏
                 img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 恢复原图片
             }
         };
@@ -193,4 +194,7 @@
                 <li><a href="https://v.douyin.com/irExtN5D/">抖音个人号</a></li>
                 <li><a href="https://v.douyin.com/irEQfjhn/">抖音作品号</a></li>
             </ul>
-        </section
+        </section>
+    </main>
+</body>
+</html>
