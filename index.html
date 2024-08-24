@@ -23,7 +23,6 @@
             background-color: black; /* 导航栏底色设置为黑色 */
             padding: 0px 0; /* 减少导航栏的内边距 */
             text-align: center;
-            transition: background-color 0.3s; /* 背景色过渡 */
         }
         nav a {
             margin: 0 15px;
@@ -35,12 +34,10 @@
             line-height: 40px; /* 垂直居中 */
             background-color: black; /* 按钮背景颜色与导航栏一致 */
             border: none; /* 去掉边框 */
-            transition: background-color 0.3s, transform 0.3s; /* 过渡效果 */
+            transition: transform 0.3s; /* 过渡效果 */
         }
         nav a:hover {
-            background-color: white; /* 悬停时背景颜色为白色 */
-            color: black; /* 悬停时文字颜色为黑色 */
-            transform: scale(1.1); /* 悬停时放大 */
+            transform: scale(1.1); /* 悬停时放大文字 */
         }
         main {
             padding: 40px;
