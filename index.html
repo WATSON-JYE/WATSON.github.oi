@@ -15,8 +15,6 @@
         
         header {
             text-align: center;
-            position: relative;
-            z-index: 10;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
@@ -32,6 +30,7 @@
             text-align: center;
             position: relative;
             transition: transform 0.3s ease;
+            z-index: 10;
         }
 
         nav a {
@@ -100,6 +99,7 @@
             top: 0;
             width: 100%;
             z-index: 10;
+            transform: translateY(0);
         }
 
         .small-logo {
@@ -110,6 +110,14 @@
             transform: translateY(-50%);
             transition: max-width 0.3s ease, left 0.3s ease;
         }
+
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            transform: translateY(0);
+        }
     </style>
     <script>
         window.addEventListener('scroll', function() {
@@ -118,13 +126,13 @@
             const logo = document.querySelector('#logo-img');
 
             if (window.scrollY > 100) {
-                header.style.opacity = '0';
-                nav.classList.add('fixed-nav');
+                nav.classList.add('nav-fixed');
                 logo.classList.add('small-logo');
+                header.style.opacity = '0';
             } else {
-                header.style.opacity = '1';
-                nav.classList.remove('fixed-nav');
+                nav.classList.remove('nav-fixed');
                 logo.classList.remove('small-logo');
+                header.style.opacity = '1';
             }
         });
     </script>
