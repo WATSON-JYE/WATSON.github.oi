@@ -14,6 +14,7 @@
             --nav-text-color: white; /* 导航栏文字颜色 */
             --header-image: 'watson英文字体_黑色.png'; /* 浅色模式图片 */
             --link-color: #003c71; /* 浅色模式链接颜色 */
+            --header-padding: 100px; /* 确保图片不会被导航栏遮挡 */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -25,6 +26,7 @@
                 --nav-text-color: white; /* 深色模式导航栏文字颜色 */
                 --header-image: 'watson英文字体_白色psb.png'; /* 深色模式图片 */
                 --link-color: #68b6fc; /* 深色模式链接颜色 */
+                --header-padding: 100px; /* 确保图片不会被导航栏遮挡 */
             }
         }
 
@@ -34,32 +36,34 @@
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         header {
             background-color: var(--header-background);
             color: var(--text-color);
-            padding: 20px;
+            padding-top: var(--header-padding);
             text-align: center;
-            margin-bottom: 10px; /* 调整为更小的边距 */
-            transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
+            margin-bottom: 10px;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+            z-index: 1;
         }
 
         header img {
             width: 100%; 
             max-width: 600px; 
-            transition: opacity 0.3s ease-in-out; /* 图片透明度过渡效果 */
+            transition: opacity 0.3s ease-in-out;
         }
 
         nav {
             background-color: var(--nav-background);
-            padding: 0; /* 导航栏的内边距设置为0 */
+            padding: 0;
             text-align: center;
-            transition: background-color 0.3s; /* 添加过渡效果 */
-            display: block; /* 默认显示导航栏 */
-            position: fixed; /* 固定位置 */
-            top: 0; /* 顶部对齐 */
+            transition: background-color 0.3s;
+            display: block;
+            position: fixed;
+            top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
@@ -69,86 +73,79 @@
             margin: 0 15px;
             text-decoration: none;
             color: var(--nav-text-color);
-            padding: 10px 20px; /* 按钮内边距 */
-            display: inline-block; /* 使链接看起来像按钮 */
-            height: 40px; /* 设置按钮高度 */
-            line-height: 40px; /* 垂直居中 */
-            background-color: black; /* 按钮背景颜色与导航栏一致 */
-            border: none; /* 去掉边框 */
-            transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
+            padding: 10px 20px;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            background-color: black;
+            border: none;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
 
         nav a:hover {
-            background-color: white; /* 悬停时背景颜色变为白色 */
-            color: black; /* 悬停时文字颜色变为黑色 */
-            transform: scale(1.1); /* 悬停时放大文字 */
+            background-color: white;
+            color: black;
+            transform: scale(1.1);
         }
 
         main {
             padding: 40px;
             margin: 20px auto;
             max-width: 800px;
-            background-color: transparent; /* 让主内容背景透明，以显示不同模式下的背景色 */
+            background-color: transparent;
             border-radius: 8px;
-            box-shadow: none; /* 不需要阴影 */
+            box-shadow: none;
         }
 
         section {
-            display: none; /* 默认隐藏所有部分 */
-            margin-bottom: 40px; /* 各部分之间的间距 */
+            display: none;
+            margin-bottom: 40px;
         }
 
         section.active {
-            display: block; /* 显示当前激活的部分 */
+            display: block;
         }
 
-        /* 链接样式 */
         a {
-            color: var(--link-color); /* 链接颜色 */
+            color: var(--link-color);
         }
 
         a:hover {
-            text-decoration: underline; /* 悬停时下划线 */
+            text-decoration: underline;
         }
     </style>
     <script>
-        // JavaScript函数用于显示相应的内容部分
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
-                section.classList.remove('active'); // 隐藏所有部分
+                section.classList.remove('active');
             });
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
-                activeSection.classList.add('active'); // 显示当前部分
+                activeSection.classList.add('active');
             }
         }
 
-        // 监听页面加载事件，默认显示首页内容
         window.onload = function() {
-            showSection('home'); // 页面加载时显示首页
+            showSection('home');
             const nav = document.querySelector('nav');
             const header = document.querySelector('header');
             const img = header.querySelector('img');
-
-            // 确保在加载时也设置图片
             img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, "");
         };
 
-        // 监听滚动事件，处理导航栏的固定和图片变化
         window.onscroll = function() {
             const header = document.querySelector('header');
-            const nav = document.querySelector('nav');
             const img = header.querySelector('img');
 
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                img.style.opacity = '0'; // 隐藏图片
+                img.style.opacity = '0';
                 setTimeout(() => {
-                    img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 切换图片
-                    img.style.opacity = '1'; // 显示新图片
-                }, 300); // 300毫秒后切换图片
+                    img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, "");
+                    img.style.opacity = '1';
+                }, 300);
             } else {
-                img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, ""); // 恢复原图片
+                img.src = getComputedStyle(document.documentElement).getPropertyValue('--header-image').replace(/['"]/g, "");
             }
         };
     </script>
@@ -158,28 +155,24 @@
         <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站"/>
     </header>
     
-    <!-- 导航栏 -->
     <nav>
-        <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
-        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
-        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
-        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
     </nav>
     
     <main>
-        <!-- 首页部分 -->
         <section id="home" class="active">
             <h2>首页</h2>
             <p>欢迎来到我的个人网站！这里是我的作品、联系方式和社交媒体信息。</p>
         </section>
         
-        <!-- 项目展示部分 -->
         <section id="projects">
             <h2>项目展示</h2>
             <p>这里是我的作品和个人成绩展示。</p>
         </section>
         
-        <!-- 联系方式部分 -->
         <section id="contact">
             <h2>联系方式</h2>
             <p>请联系我以讨论合作机会：</p>
@@ -187,7 +180,6 @@
             <p>邮箱2：<a href="mailto:1655642797@qq.com">1655642797@qq.com</a></p>
         </section>
         
-        <!-- 社交媒体部分 -->
         <section id="social">
             <h2>社交媒体</h2>
             <p>关注我在社交媒体上的动态：</p>
@@ -196,3 +188,8 @@
                 <li><a href="https://twitter.com/Watsonwsj2src">Twitter</a></li>
                 <li><a href="https://v.douyin.com/irExtN5D/">抖音个人号</a></li>
                 <li><a href="https://v.douyin.com/irEQfjhn/">抖音作品号</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
