@@ -10,18 +10,18 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white; /* 设置背景颜色为白色 */
+            background-color: white; /* 背景颜色 */
+            overflow-x: hidden; /* 防止水平滚动 */
         }
         header {
             text-align: center;
             position: relative;
             transition: all 0.3s ease; /* 动效 */
+            padding-top: 120px; /* 为logo留出空间 */
         }
         nav {
-            background-color: black; /* 导航栏底色设置为黑色 */
-            padding: 0; /* 导航栏的内边距设置为0 */
-            text-align: center;
-            white-space: nowrap; /* 防止按钮换行 */
+            background-color: black; /* 导航栏底色 */
+            padding: 0; /* 导航栏的内边距 */
             display: flex; /* 使用 flexbox 布局 */
             align-items: center; /* 垂直居中对齐 */
             position: fixed; /* 固定导航栏 */
@@ -33,26 +33,25 @@
         nav img {
             width: 100px; /* 默认logo宽度 */
             transition: width 0.3s; /* 动效 */
+            margin-right: 20px; /* logo右边距 */
         }
         nav a {
             text-decoration: none;
-            color: white; /* 默认文字颜色为白色 */
+            color: white; /* 默认文字颜色 */
             padding: 10px 15px; /* 按钮内边距 */
             display: inline-block; /* 使链接看起来像按钮 */
             transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
         }
         nav a:hover {
-            background-color: white; /* 悬停时背景颜色变为白色 */
-            color: black; /* 悬停时文字颜色变为黑色 */
+            background-color: white; /* 悬停时背景颜色 */
+            color: black; /* 悬停时文字颜色 */
             transform: scale(1.1); /* 悬停时放大文字 */
         }
         main {
             padding: 40px;
-            margin: 60px auto; /* 给导航栏留出空间 */
+            margin-top: 60px; /* 给导航栏留出空间 */
             max-width: 800px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto; /* 居中显示 */
         }
         section {
             display: none; /* 默认隐藏所有部分 */
@@ -61,15 +60,15 @@
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
-        
+
         /* 媒体查询 */
         @media (max-width: 600px) {
             nav a {
                 padding: 10px 8px; /* 调整按钮内边距 */
                 font-size: 14px; /* 按钮字体大小 */
             }
-            header img {
-                width: 80%; /* 移动端缩小图片宽度 */
+            nav img {
+                width: 80px; /* 移动端缩小logo宽度 */
             }
         }
     </style>
@@ -104,7 +103,7 @@
 </head>
 <body>
     <header>
-        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" id="nav-logo"/> <!-- 这里是初始显示的Logo -->
+        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" id="main-logo"/> <!-- 这里是初始显示的Logo -->
     </header>
     
     <!-- 导航栏 -->
