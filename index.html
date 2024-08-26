@@ -10,11 +10,12 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white; /* 浅色模式背景 */
-            transition: background-color 0.3s; /* 背景色变化动效 */
+            background-color: white; /* 设置背景颜色为白色 */
         }
         header {
-            background-color: rgba(255, 255, 255, 0.8); /* 浅色背景 */
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
+            color: black;
+            padding: 0; /* 去掉内边距以防遮挡 */
             text-align: center;
             position: relative;
             transition: all 0.3s ease; /* 动效 */
@@ -24,8 +25,6 @@
             padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
             white-space: nowrap; /* 防止按钮换行 */
-            position: relative;
-            transition: all 0.3s; /* 动效 */
         }
         nav a {
             text-decoration: none;
@@ -91,20 +90,40 @@
                 nav.style.top = '0';
                 nav.style.width = '100%';
                 nav.style.zIndex = '1000';
-                logo.src = logo.dataset.white; // 切换到白色logo
+                logo.src = "watson英文字体_白色psb.png"; // 改变为白色logo
                 logo.style.width = '50px'; // 缩小logo
                 logo.style.transition = 'width 0.3s'; // 动效
             } else {
                 nav.style.position = 'relative';
-                logo.src = logo.dataset.black; // 切换到黑色logo
-                logo.style.width = '100%'; // 恢复logo
+                logo.src = "watson英文字体_黑色.png"; // 恢复为黑色logo
+                logo.style.width = '100%'; // 恢复logo大小
             }
         };
+
+        // 深色模式检测
+        function updateTheme() {
+            const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const body = document.body;
+            if (darkMode) {
+                body.style.backgroundColor = '#121212'; // 深色模式背景
+                body.style.color = 'white'; // 深色模式文字颜色
+                document.querySelector('nav').style.backgroundColor = '#333'; // 深色模式导航栏颜色
+                document.querySelector('nav a').style.color = '#68b6fc'; // 深色模式链接颜色
+            } else {
+                body.style.backgroundColor = 'white'; // 浅色模式背景
+                body.style.color = 'black'; // 浅色模式文字颜色
+                document.querySelector('nav').style.backgroundColor = 'black'; // 浅色模式导航栏颜色
+                document.querySelector('nav a').style.color = 'white'; // 浅色模式链接颜色
+            }
+        }
+        // 监听页面加载和主题变化
+        window.onload = updateTheme;
+        window.matchMedia('(prefers-color-scheme: dark)').addListener(updateTheme);
     </script>
 </head>
 <body>
     <header>
-        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" data-black="watson英文字体_黑色.png" data-white="watson英文字体_白色psb.png"/>
+        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站"/>
     </header>
     
     <!-- 导航栏 -->
