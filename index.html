@@ -11,11 +11,12 @@
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
-        
+
         header {
             text-align: center;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         #logo-img {
@@ -29,7 +30,7 @@
             padding: 0;
             text-align: center;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             z-index: 10;
         }
 
@@ -80,7 +81,7 @@
                 background-color: #121212;
                 color: white;
             }
-            
+
             nav a {
                 color: #68b6fc;
             }
@@ -94,7 +95,7 @@
             }
         }
 
-        .fixed-nav {
+        .nav-fixed {
             position: fixed;
             top: 0;
             width: 100%;
@@ -111,12 +112,15 @@
             transition: max-width 0.3s ease, left 0.3s ease;
         }
 
-        .nav-fixed {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10;
-            transform: translateY(0);
+        /* 防止抖动的占位符 */
+        .placeholder {
+            height: 80px;
+            display: none;
+        }
+
+        /* 导航栏固定后显示占位符 */
+        .nav-fixed + .placeholder {
+            display: block;
         }
     </style>
     <script>
@@ -124,6 +128,7 @@
             const header = document.querySelector('header');
             const nav = document.querySelector('nav');
             const logo = document.querySelector('#logo-img');
+            const placeholder = document.querySelector('.placeholder');
 
             if (window.scrollY > 100) {
                 nav.classList.add('nav-fixed');
@@ -148,6 +153,8 @@
         <a href="#contact">联系方式</a>
         <a href="#social">社交媒体</a>
     </nav>
+    <!-- 用于防止抖动的占位符 -->
+    <div class="placeholder"></div>
     
     <main>
         <section id="home">
@@ -163,18 +170,18 @@
         <section id="contact">
             <h2>联系方式</h2>
             <p>请联系我以讨论合作机会：</p>
-            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com">wangshijiejie2002@gmail.com</a></p>
-            <p>邮箱2：<a href="mailto:1655642797@qq.com">1655642797@qq.com</a></p>
+            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com" style="color: #003c71;">wangshijiejie2002@gmail.com</a></p>
+            <p>邮箱2：<a href="mailto:1655642797@qq.com" style="color: #003c71;">1655642797@qq.com</a></p>
         </section>
         
         <section id="social">
             <h2>社交媒体</h2>
             <p>关注我在社交媒体上的动态：</p>
             <ul>
-                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr">Instagram</a></li>
-                <li><a href="https://twitter.com/Watsonwsj2src">Twitter</a></li>
-                <li><a href="https://v.douyin.com/irExtN5D/">抖音个人号</a></li>
-                <li><a href="https://v.douyin.com/irEQfjhn/">抖音作品号</a></li>
+                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #003c71;">Instagram</a></li>
+                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></li>
+                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #003c71;">抖音个人号</a></li>
+                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #003c71;">抖音作品号</a></li>
             </ul>
         </section>
     </main>
