@@ -16,6 +16,8 @@
 
         header {
             text-align: center;
+            position: relative;
+            z-index: 1;
             transition: opacity 0.3s ease;
         }
 
@@ -120,11 +122,7 @@
         /* 防止抖动的占位符 */
         .placeholder {
             height: 80px; /* 适应导航栏的高度 */
-        }
-
-        /* 导航栏固定后显示占位符 */
-        .nav-fixed + .placeholder {
-            display: block;
+            display: none; /* 初始状态下隐藏 */
         }
     </style>
     <script>
@@ -169,7 +167,7 @@
     </nav>
     
     <!-- 用于防止抖动的占位符 -->
-    <div class="placeholder" style="display: none;"></div>
+    <div class="placeholder"></div>
     
     <main>
         <section id="home" class="active">
@@ -194,4 +192,11 @@
             <p>关注我在社交媒体上的动态：</p>
             <ul>
                 <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #003c71;">Instagram</a></li>
-                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></​⬤
+                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></li>
+                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #003c71;">抖音个人号</a></li>
+                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #003c71;">抖音作品号</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
