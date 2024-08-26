@@ -13,9 +13,6 @@
             background-color: white; /* 设置背景颜色为白色 */
         }
         header {
-            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
-            color: black;
-            padding: 0; /* 去掉内边距以防遮挡 */
             text-align: center;
             position: relative;
             transition: all 0.3s ease; /* 动效 */
@@ -27,6 +24,11 @@
             white-space: nowrap; /* 防止按钮换行 */
             display: flex; /* 使用 flexbox 布局 */
             align-items: center; /* 垂直居中对齐 */
+            position: fixed; /* 固定导航栏 */
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* 确保在其他元素上方 */
+            transition: background-color 0.3s; /* 背景颜色变化动效 */
         }
         nav img {
             width: 50px; /* 默认logo宽度 */
@@ -46,7 +48,7 @@
         }
         main {
             padding: 40px;
-            margin: 20px auto;
+            margin: 60px auto; /* 给导航栏留出空间 */
             max-width: 800px;
             background-color: white;
             border-radius: 8px;
@@ -86,29 +88,23 @@
         
         // 处理页面滚动
         window.onscroll = function() {
-            const header = document.querySelector('header');
             const nav = document.querySelector('nav');
-            const logo = document.querySelector('header img');
+            const logo = document.querySelector('#nav-logo');
             const top = window.pageYOffset || document.documentElement.scrollTop;
 
             if (top > 0) {
-                nav.style.position = 'fixed';
-                nav.style.top = '0';
-                nav.style.width = '100%';
-                nav.style.zIndex = '1000';
                 logo.src = 'watson英文字体_白色psb.png'; // 切换logo为白色版本
                 logo.style.width = '50px'; // 缩小logo
             } else {
-                nav.style.position = 'relative';
                 logo.src = 'watson英文字体_黑色.png'; // 恢复为黑色版本
-                logo.style.width = '100%'; // 恢复logo
+                logo.style.width = '100px'; // 恢复logo
             }
         };
     </script>
 </head>
 <body>
     <header>
-        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站"/>
+        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" id="nav-logo"/>
     </header>
     
     <!-- 导航栏 -->
