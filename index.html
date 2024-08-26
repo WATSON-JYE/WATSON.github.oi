@@ -91,16 +91,21 @@
         window.onscroll = function() {
             const nav = document.querySelector('nav');
             const logo = document.querySelector('header img');
+            const navLogo = document.querySelector('nav img');
             const top = window.pageYOffset || document.documentElement.scrollTop;
 
             if (top > 0) {
                 nav.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; // 设置导航栏的背景颜色
-                logo.src = 'watson英文字体_白色psb.png'; // 切换logo为白色版本
+                logo.src = 'watson英文字体_白色psb.png'; // 切换为白色logo
+                navLogo.src = 'watson英文字体_白色psb.png'; // 确保导航栏中的logo也切换为白色
                 logo.style.width = '50px'; // 缩小logo
+                navLogo.style.width = '50px'; // 确保导航栏logo缩小
             } else {
                 nav.style.backgroundColor = 'black'; // 恢复导航栏的背景颜色
                 logo.src = 'watson英文字体_黑色.png'; // 恢复为黑色版本
+                navLogo.src = 'watson英文字体_黑色.png'; // 确保导航栏中的logo恢复为黑色
                 logo.style.width = '100px'; // 恢复logo
+                navLogo.style.width = '100px'; // 确保导航栏logo恢复
             }
         };
     </script>
