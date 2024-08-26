@@ -25,6 +25,12 @@
             padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
             white-space: nowrap; /* 防止按钮换行 */
+            display: flex; /* 使用 flexbox 布局 */
+            align-items: center; /* 垂直居中对齐 */
+        }
+        nav img {
+            width: 50px; /* 默认logo宽度 */
+            transition: width 0.3s; /* 动效 */
         }
         nav a {
             text-decoration: none;
@@ -90,10 +96,11 @@
                 nav.style.top = '0';
                 nav.style.width = '100%';
                 nav.style.zIndex = '1000';
+                logo.src = 'watson英文字体_白色psb.png'; // 切换logo为白色版本
                 logo.style.width = '50px'; // 缩小logo
-                logo.style.transition = 'width 0.3s'; // 动效
             } else {
                 nav.style.position = 'relative';
+                logo.src = 'watson英文字体_黑色.png'; // 恢复为黑色版本
                 logo.style.width = '100%'; // 恢复logo
             }
         };
@@ -106,6 +113,7 @@
     
     <!-- 导航栏 -->
     <nav>
+        <img src="watson英文字体_黑色.png" alt="Logo" id="nav-logo"/> <!-- Logo 放在导航栏左侧 -->
         <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
         <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
         <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
