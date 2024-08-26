@@ -10,7 +10,8 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white; /* 设置背景颜色为白色 */
+            background-color: white; /* 默认背景颜色为白色 */
+            color: black; /* 默认文字颜色 */
         }
         header {
             background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
@@ -42,7 +43,7 @@
             padding: 40px;
             margin: 20px auto;
             max-width: 800px;
-            background-color: white;
+            background-color: white; /* 默认主内容背景为白色 */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -53,7 +54,24 @@
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
-        
+
+        /* 深色模式的样式 */
+        body.dark-mode {
+            background-color: #121212; /* 深色模式背景 */
+            color: white; /* 深色模式文字颜色 */
+        }
+        header.dark-mode {
+            background-color: rgba(18, 18, 18, 0.8); /* 深色模式半透明 */
+        }
+        nav.dark-mode {
+            background-color: #333; /* 深色模式导航栏颜色 */
+        }
+        nav a.dark-mode {
+            color: #68b6fc; /* 深色模式链接颜色 */
+        }
+        main.dark-mode {
+            background-color: #1e1e1e; /* 深色模式主内容背景 */
+        }
         /* 媒体查询 */
         @media (max-width: 600px) {
             nav a {
@@ -104,16 +122,23 @@
         function updateTheme() {
             const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const body = document.body;
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+            const links = document.querySelectorAll('nav a');
+            const main = document.querySelector('main');
+
             if (darkMode) {
-                body.style.backgroundColor = '#121212'; // 深色模式背景
-                body.style.color = 'white'; // 深色模式文字颜色
-                document.querySelector('nav').style.backgroundColor = '#333'; // 深色模式导航栏颜色
-                document.querySelector('nav a').style.color = '#68b6fc'; // 深色模式链接颜色
+                body.classList.add('dark-mode');
+                header.classList.add('dark-mode');
+                nav.classList.add('dark-mode');
+                links.forEach(link => link.classList.add('dark-mode'));
+                main.classList.add('dark-mode');
             } else {
-                body.style.backgroundColor = 'white'; // 浅色模式背景
-                body.style.color = 'black'; // 浅色模式文字颜色
-                document.querySelector('nav').style.backgroundColor = 'black'; // 浅色模式导航栏颜色
-                document.querySelector('nav a').style.color = 'white'; // 浅色模式链接颜色
+                body.classList.remove('dark-mode');
+                header.classList.remove('dark-mode');
+                nav.classList.remove('dark-mode');
+                links.forEach(link => link.classList.remove('dark-mode'));
+                main.classList.remove('dark-mode');
             }
         }
         // 监听页面加载和主题变化
@@ -151,8 +176,8 @@
         <section id="contact">
             <h2>联系方式</h2>
             <p>请联系我以讨论合作机会：</p>
-            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com" style="color: #003c71;">wangshijiejie2002@gmail.com</a></p>
-            <p>邮箱2：<a href="mailto:1655642797@qq.com" style="color: #003c71;">1655642797@qq.com</a></p>
+            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com" style="color: #68b6fc;">wangshijiejie2002@gmail.com</a></p>
+            <p>邮箱2：<a href="mailto:1655642797@qq.com" style="color: #68b6fc;">1655642797@qq.com</a></p>
         </section>
         
         <!-- 社交媒体部分 -->
@@ -160,10 +185,10 @@
             <h2>社交媒体</h2>
             <p>关注我在社交媒体上的动态：</p>
             <ul>
-                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #003c71;">Instagram</a></li>
-                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></li>
-                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #003c71;">抖音个人号</a></li>
-                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #003c71;">抖音作品号</a></li>
+                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #68b6fc;">Instagram</a></li>
+                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #68b6fc;">Twitter</a></li>
+                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #68b6fc;">抖音个人号</a></li>
+                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #68b6fc;">抖音作品号</a></li>
             </ul>
         </section>
     </main>
