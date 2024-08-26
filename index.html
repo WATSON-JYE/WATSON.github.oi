@@ -40,9 +40,6 @@
             color: white;
             padding: 10px 20px;
             display: inline-block;
-            height: 40px;
-            line-height: 40px;
-            border: none;
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
 
@@ -75,14 +72,6 @@
             color: #68b6fc;
         }
 
-        .dark-mode nav a:hover {
-            color: black;
-        }
-
-        .dark-mode main {
-            background-color: #1e1e1e;
-        }
-
         .dark-mode #logo-img {
             content: url('watson英文字体_白色psb.png');
         }
@@ -95,10 +84,6 @@
             
             nav a {
                 color: #68b6fc;
-            }
-
-            nav a:hover {
-                color: black;
             }
 
             main {
@@ -114,7 +99,6 @@
             position: fixed;
             top: 0;
             width: 100%;
-            left: 0;
             z-index: 10;
         }
 
@@ -122,13 +106,9 @@
             max-width: 60px;
             position: absolute;
             left: 15px;
-            top: 5px;
+            top: 50%;
             transform: translateY(-50%);
             transition: max-width 0.3s ease, left 0.3s ease;
-        }
-
-        .nav-right {
-            transform: translateX(100px);
         }
     </style>
     <script>
@@ -141,18 +121,12 @@
                 header.style.opacity = '0';
                 nav.classList.add('fixed-nav');
                 logo.classList.add('small-logo');
-                nav.querySelector('a').classList.add('nav-right');
             } else {
                 header.style.opacity = '1';
                 nav.classList.remove('fixed-nav');
                 logo.classList.remove('small-logo');
-                nav.querySelector('a').classList.remove('nav-right');
             }
         });
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
     </script>
 </head>
 <body>
@@ -161,10 +135,10 @@
     </header>
     
     <nav>
-        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
-        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
-        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
-        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
+        <a href="#home">首页</a>
+        <a href="#projects">项目展示</a>
+        <a href="#contact">联系方式</a>
+        <a href="#social">社交媒体</a>
     </nav>
     
     <main>
