@@ -116,13 +116,23 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            transition: max-width 0.3s ease, left 0.3s ease;
+            transition: max-width 0.3s ease, left 0.3s ease, transform 0.3s ease;
         }
 
         /* 防止抖动的占位符 */
         .placeholder {
             height: 80px; /* 适应导航栏的高度 */
             display: none; /* 初始状态下隐藏 */
+        }
+
+        /* 初始状态下的导航栏 */
+        .nav-initial {
+            opacity: 1;
+        }
+
+        /* 滚动后的导航栏状态 */
+        .nav-scrolled {
+            opacity: 0.8; /* 滚动后稍微变透明 */
         }
     </style>
     <script>
@@ -132,11 +142,11 @@
             const placeholder = document.querySelector('.placeholder');
 
             if (window.scrollY > 100) {
-                nav.classList.add('nav-fixed');
+                nav.classList.add('nav-fixed', 'nav-scrolled');
                 logo.classList.add('small-logo');
                 placeholder.style.display = 'block'; // 显示占位符
             } else {
-                nav.classList.remove('nav-fixed');
+                nav.classList.remove('nav-fixed', 'nav-scrolled');
                 logo.classList.remove('small-logo');
                 placeholder.style.display = 'none'; // 隐藏占位符
             }
