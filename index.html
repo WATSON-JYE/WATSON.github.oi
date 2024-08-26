@@ -16,7 +16,7 @@
 
         header {
             text-align: center;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         #logo-img {
@@ -30,7 +30,7 @@
             padding: 10px 0;
             text-align: center;
             position: relative;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: background-color 0.3s ease;
             z-index: 10;
         }
 
@@ -105,7 +105,7 @@
             top: 0;
             width: 100%;
             z-index: 10;
-            transform: translateY(0);
+            transition: transform 0.3s ease;
         }
 
         .small-logo {
@@ -114,13 +114,12 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            transition: max-width 0.3s ease, left 0.3s ease, transform 0.3s ease;
+            transition: max-width 0.3s ease, left 0.3s ease;
         }
 
         /* 防止抖动的占位符 */
         .placeholder {
-            height: 80px;
-            display: none;
+            height: 80px; /* 适应导航栏的高度 */
         }
 
         /* 导航栏固定后显示占位符 */
@@ -130,7 +129,6 @@
     </style>
     <script>
         window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
             const nav = document.querySelector('nav');
             const logo = document.querySelector('#logo-img');
             const placeholder = document.querySelector('.placeholder');
@@ -138,12 +136,10 @@
             if (window.scrollY > 100) {
                 nav.classList.add('nav-fixed');
                 logo.classList.add('small-logo');
-                header.style.opacity = '0';
                 placeholder.style.display = 'block'; // 显示占位符
             } else {
                 nav.classList.remove('nav-fixed');
                 logo.classList.remove('small-logo');
-                header.style.opacity = '1';
                 placeholder.style.display = 'none'; // 隐藏占位符
             }
         });
@@ -171,8 +167,9 @@
         <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
         <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
     </nav>
+    
     <!-- 用于防止抖动的占位符 -->
-    <div class="placeholder"></div>
+    <div class="placeholder" style="display: none;"></div>
     
     <main>
         <section id="home" class="active">
@@ -197,11 +194,4 @@
             <p>关注我在社交媒体上的动态：</p>
             <ul>
                 <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #003c71;">Instagram</a></li>
-                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></li>
-                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #003c71;">抖音个人号</a></li>
-                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #003c71;">抖音作品号</a></li>
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
+                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></​⬤
