@@ -10,34 +10,38 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white;
+            background-color: white; /* 设置背景颜色为白色 */
         }
         header {
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
+            color: black;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* 调整为更小的边距 */
         }
         nav {
-            background-color: black;
-            padding: 0;
+            background-color: black; /* 导航栏底色设置为黑色 */
+            padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
-            white-space: nowrap; /* Prevent line breaks */
-            overflow-x: auto; /* Allow horizontal scrolling if needed */
+            white-space: nowrap; /* 防止按钮跳行 */
+            overflow-x: auto; /* 在手机端可横向滚动 */
         }
         nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            display: inline-block;
-            height: 40px;
-            line-height: 40px;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            color: white; /* 默认文字颜色为白色 */
+            padding: 10px 20px; /* 按钮内边距 */
+            display: inline-block; /* 使链接看起来像按钮 */
+            height: 40px; /* 设置按钮高度 */
+            line-height: 40px; /* 垂直居中 */
+            background-color: black; /* 按钮背景颜色与导航栏一致 */
+            border: none; /* 去掉边框 */
+            transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
         }
         nav a:hover {
-            background-color: white;
-            color: black;
-            transform: scale(1.1);
+            background-color: white; /* 悬停时背景颜色变为白色 */
+            color: black; /* 悬停时文字颜色变为黑色 */
+            transform: scale(1.1); /* 悬停时放大文字 */
         }
         main {
             padding: 40px;
@@ -48,30 +52,23 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         section {
-            display: none;
-            margin-bottom: 40px;
+            display: none; /* 默认隐藏所有部分 */
+            margin-bottom: 40px; /* 各部分之间的间距 */
         }
         section.active {
-            display: block;
-        }
-        @media (max-width: 600px) {
-            nav {
-                padding: 5px 0; /* Reduce padding on smaller screens */
-            }
-            nav a {
-                padding: 5px 10px; /* Adjust padding for buttons */
-            }
+            display: block; /* 显示当前激活的部分 */
         }
     </style>
     <script>
+        // JavaScript函数用于显示相应的内容部分
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
-                section.classList.remove('active');
+                section.classList.remove('active'); // 隐藏所有部分
             });
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
-                activeSection.classList.add('active');
+                activeSection.classList.add('active'); // 显示当前部分
             }
         }
     </script>
@@ -81,6 +78,7 @@
         <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" style="width: 100%; max-width: 600px;"/>
     </header>
     
+    <!-- 导航栏 -->
     <nav>
         <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
         <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
@@ -89,31 +87,35 @@
     </nav>
     
     <main>
+        <!-- 首页部分 -->
         <section id="home" class="active">
             <h2>首页</h2>
             <p>欢迎来到我的个人网站！这里是我的作品、联系方式和社交媒体信息。</p>
         </section>
         
+        <!-- 项目展示部分 -->
         <section id="projects">
             <h2>项目展示</h2>
             <p>这里是我的作品和个人成绩展示。</p>
         </section>
         
+        <!-- 联系方式部分 -->
         <section id="contact">
             <h2>联系方式</h2>
             <p>请联系我以讨论合作机会：</p>
-            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com">wangshijiejie2002@gmail.com</a></p>
-            <p>邮箱2：<a href="mailto:1655642797@qq.com">1655642797@qq.com</a></p>
+            <p>邮箱1：<a href="mailto:wangshijiejie2002@gmail.com" style="color: #003c71;">wangshijiejie2002@gmail.com</a></p>
+            <p>邮箱2：<a href="mailto:1655642797@qq.com" style="color: #003c71;">1655642797@qq.com</a></p>
         </section>
         
+        <!-- 社交媒体部分 -->
         <section id="social">
             <h2>社交媒体</h2>
             <p>关注我在社交媒体上的动态：</p>
             <ul>
-                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr">Instagram</a></li>
-                <li><a href="https://twitter.com/Watsonwsj2src">Twitter</a></li>
-                <li><a href="https://v.douyin.com/irExtN5D/">抖音个人号</a></li>
-                <li><a href="https://v.douyin.com/irEQfjhn/">抖音作品号</a></li>
+                <li><a href="https://www.instagram.com/watsonjie0?igsh=NjViNHl2bmhpajEy&utm_source=qr" style="color: #003c71;">Instagram</a></li>
+                <li><a href="https://twitter.com/Watsonwsj2src" style="color: #003c71;">Twitter</a></li>
+                <li><a href="https://v.douyin.com/irExtN5D/" style="color: #003c71;">抖音个人号</a></li>
+                <li><a href="https://v.douyin.com/irEQfjhn/" style="color: #003c71;">抖音作品号</a></li>
             </ul>
         </section>
     </main>
