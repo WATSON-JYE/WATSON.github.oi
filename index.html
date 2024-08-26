@@ -15,27 +15,22 @@
         header {
             background-color: rgba(255, 255, 255, 0.8); /* 半透明白色 */
             color: black;
-            padding: 20px;
+            padding: 0; /* 去掉内边距以防遮挡 */
             text-align: center;
-            margin-bottom: 10px; /* 调整为更小的边距 */
+            position: relative;
+            transition: all 0.3s ease; /* 动效 */
         }
         nav {
             background-color: black; /* 导航栏底色设置为黑色 */
             padding: 0; /* 导航栏的内边距设置为0 */
             text-align: center;
-            white-space: nowrap; /* 防止按钮跳行 */
-            overflow-x: auto; /* 在手机端可横向滚动 */
+            white-space: nowrap; /* 防止按钮换行 */
         }
         nav a {
-            margin: 0 15px;
             text-decoration: none;
             color: white; /* 默认文字颜色为白色 */
-            padding: 10px 20px; /* 按钮内边距 */
+            padding: 10px 15px; /* 按钮内边距 */
             display: inline-block; /* 使链接看起来像按钮 */
-            height: 40px; /* 设置按钮高度 */
-            line-height: 40px; /* 垂直居中 */
-            background-color: black; /* 按钮背景颜色与导航栏一致 */
-            border: none; /* 去掉边框 */
             transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
         }
         nav a:hover {
@@ -58,6 +53,17 @@
         section.active {
             display: block; /* 显示当前激活的部分 */
         }
+        
+        /* 媒体查询 */
+        @media (max-width: 600px) {
+            nav a {
+                padding: 10px 8px; /* 调整按钮内边距 */
+                font-size: 14px; /* 按钮字体大小 */
+            }
+            header img {
+                width: 80%; /* 移动端缩小图片宽度 */
+            }
+        }
     </style>
     <script>
         // JavaScript函数用于显示相应的内容部分
@@ -71,19 +77,39 @@
                 activeSection.classList.add('active'); // 显示当前部分
             }
         }
+        
+        // 处理页面滚动
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+            const logo = document.querySelector('header img');
+            const top = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (top > 0) {
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                nav.style.width = '100%';
+                nav.style.zIndex = '1000';
+                logo.style.width = '50px'; // 缩小logo
+                logo.style.transition = 'width 0.3s'; // 动效
+            } else {
+                nav.style.position = 'relative';
+                logo.style.width = '100%'; // 恢复logo
+            }
+        };
     </script>
 </head>
 <body>
     <header>
-        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" style="width: 100%; max-width: 600px;"/>
+        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站"/>
     </header>
     
     <!-- 导航栏 -->
     <nav>
-        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
-        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
-        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
-        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a> <!-- 首页 -->
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a> <!-- 项目展示 -->
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
     </nav>
     
     <main>
