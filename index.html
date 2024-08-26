@@ -10,24 +10,24 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         header {
             text-align: center;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         #logo-img {
             width: 100%;
             max-width: 600px;
-            transition: width 0.3s, max-width 0.3s;
+            transition: width 0.3s, max-width 0.3s, transform 0.3s;
         }
 
         nav {
             background-color: black;
-            padding: 0;
+            padding: 10px 0;
             text-align: center;
             position: relative;
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -60,7 +60,12 @@
         }
 
         section {
+            display: none; /* 初始状态下隐藏所有部分 */
             margin-bottom: 40px;
+        }
+
+        section.active {
+            display: block; /* 激活部分显示 */
         }
 
         .dark-mode {
@@ -109,7 +114,7 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            transition: max-width 0.3s ease, left 0.3s ease;
+            transition: max-width 0.3s ease, left 0.3s ease, transform 0.3s ease;
         }
 
         /* 防止抖动的占位符 */
@@ -134,12 +139,25 @@
                 nav.classList.add('nav-fixed');
                 logo.classList.add('small-logo');
                 header.style.opacity = '0';
+                placeholder.style.display = 'block'; // 显示占位符
             } else {
                 nav.classList.remove('nav-fixed');
                 logo.classList.remove('small-logo');
                 header.style.opacity = '1';
+                placeholder.style.display = 'none'; // 隐藏占位符
             }
         });
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active'); // 隐藏所有部分
+            });
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active'); // 显示当前部分
+            }
+        }
     </script>
 </head>
 <body>
@@ -148,16 +166,16 @@
     </header>
     
     <nav>
-        <a href="#home">首页</a>
-        <a href="#projects">项目展示</a>
-        <a href="#contact">联系方式</a>
-        <a href="#social">社交媒体</a>
+        <a href="javascript:void(0)" onclick="showSection('home')">首页</a>
+        <a href="javascript:void(0)" onclick="showSection('projects')">项目展示</a>
+        <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a>
+        <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a>
     </nav>
     <!-- 用于防止抖动的占位符 -->
     <div class="placeholder"></div>
     
     <main>
-        <section id="home">
+        <section id="home" class="active">
             <h2>首页</h2>
             <p>欢迎来到我的个人网站！这里是我的作品、联系方式和社交媒体信息。</p>
         </section>
