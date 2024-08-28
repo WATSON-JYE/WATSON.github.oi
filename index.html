@@ -25,7 +25,7 @@
         }
         nav {
             background-color: black; /* 导航栏底色设置为黑色 */
-            padding: 10px 0; /* 导航栏的内边距设置为固定 */
+            padding: 0px 0; /* 导航栏的内边距设置为固定 */
             text-align: center;
             white-space: nowrap; /* 防止按钮换行 */
             transition: padding 0.3s; /* 导航栏的过渡效果 */
@@ -90,7 +90,7 @@
         /* 媒体查询 */
         @media (max-width: 600px) {
             nav a {
-                padding: 10px 8px; /* 调整按钮内边距 */
+                padding: 10px 10px; /* 调整按钮内边距 */
                 font-size: 14px; /* 按钮字体大小 */
             }
             header img {
@@ -127,7 +127,7 @@ window.onscroll = function() {
     } else {
         nav.style.position = 'relative';
         logo.src = isDarkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据模式设置Logo
-        nav.style.padding = '20px 0'; // 恢复导航栏的内边距
+        nav.style.padding = '10px 0'; // 恢复导航栏的内边距
     }
 };
         // 深色模式检测
