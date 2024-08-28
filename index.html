@@ -24,10 +24,12 @@
         }
         nav {
             background-color: black; /* 导航栏底色设置为黑色 */
-            padding: 0; /* 导航栏的内边距设置为0 */
+            padding: 10px 0; /* 导航栏的内边距设置为固定 */
             text-align: center;
             white-space: nowrap; /* 防止按钮换行 */
             transition: padding 0.3s; /* 导航栏的过渡效果 */
+            position: relative;
+            z-index: 999; /* 确保导航栏在其他内容之上 */
         }
         nav a {
             text-decoration: none;
@@ -36,7 +38,7 @@
             display: inline-block; /* 使链接看起来像按钮 */
             transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 过渡效果 */
             height: 100%; /* 设置按钮高度为100%以匹配导航栏 */
-            line-height: 50px; /* 垂直居中对齐 */
+            line-height: 30px; /* 垂直居中对齐 */
         }
         nav a:hover {
             background-color: white; /* 悬停时背景颜色变为白色 */
@@ -77,6 +79,9 @@
         nav a.dark-mode {
             color: white; /* 深色模式导航栏文字颜色 */
         }
+        nav a.dark-mode:active {
+            color: #68b6fc; /* 深色模式下按钮点按时文字颜色 */
+        }
         main.dark-mode {
             background-color: #1e1e1e; /* 深色模式主内容背景 */
         }
@@ -92,6 +97,7 @@
         }
     </style>
     <script>
+        // JavaScript函数用于显示相应的内容部分
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
@@ -102,24 +108,23 @@
                 activeSection.classList.add('active'); // 显示当前部分
             }
         }
-
-        // 处理页面滚动和logo切换
+        
+        // 处理页面滚动
         window.onscroll = function() {
             const nav = document.querySelector('nav');
             const logo = document.querySelector('header img');
             const top = window.pageYOffset || document.documentElement.scrollTop;
-            const darkMode = document.body.classList.contains('dark-mode');
 
             if (top > 0) {
                 nav.style.position = 'fixed';
                 nav.style.top = '0';
                 nav.style.width = '100%';
                 nav.style.zIndex = '1000';
-                logo.src = darkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据深色模式切换logo
+                logo.src = "watson英文字体_白色psb.png"; // 上滑后显示白色logo
                 nav.style.padding = '10px 0'; // 收缩导航栏的内边距
             } else {
                 nav.style.position = 'relative';
-                logo.src = darkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据深色模式切换logo
+                logo.src = "watson英文字体_黑色.png"; // 恢复为黑色logo
                 nav.style.padding = '20px 0'; // 恢复导航栏的内边距
             }
         };
@@ -132,7 +137,6 @@
             const nav = document.querySelector('nav');
             const links = document.querySelectorAll('nav a');
             const main = document.querySelector('main');
-            const logo = document.querySelector('header img');
 
             if (darkMode) {
                 body.classList.add('dark-mode');
@@ -140,17 +144,14 @@
                 nav.classList.add('dark-mode');
                 links.forEach(link => link.classList.add('dark-mode'));
                 main.classList.add('dark-mode');
-                logo.src = "watson英文字体_白色psb.png"; // 深色模式下使用白色logo
             } else {
                 body.classList.remove('dark-mode');
                 header.classList.remove('dark-mode');
                 nav.classList.remove('dark-mode');
                 links.forEach(link => link.classList.remove('dark-mode'));
                 main.classList.remove('dark-mode');
-                logo.src = "watson英文字体_黑色.png"; // 浅色模式下使用黑色logo
             }
         }
-        
         // 监听页面加载和主题变化
         window.onload = updateTheme;
         window.matchMedia('(prefers-color-scheme: dark)').addListener(updateTheme);
@@ -158,7 +159,7 @@
 </head>
 <body>
     <header>
-        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站"/>
+        <img src="watson英文字体_黑色.png" alt="欢迎来到我的个人网站" style="max-height: 50px;"/> <!-- 限制Logo的最大高度 -->
     </header>
     
     <!-- 导航栏 -->
