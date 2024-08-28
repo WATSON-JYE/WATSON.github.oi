@@ -81,9 +81,14 @@
         nav a.dark-mode {
             color: white; /* 深色模式导航栏文字颜色 */
         }
-        nav a.dark-mode:active {
-            color: black; /* 深色模式下按钮点按时文字颜色 */
-        }
+        /* 深色模式下导航栏按钮样式 */
+nav a.dark-mode:hover {
+    color: black; /* 悬停时文字颜色为白色 */
+}
+
+nav a.dark-mode:active {
+    color: black; /* 点按时文字颜色为白色 */
+}
         main.dark-mode {
             background-color: #1e1e1e; /* 深色模式主内容背景 */
         }
