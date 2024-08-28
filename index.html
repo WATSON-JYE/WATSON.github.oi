@@ -25,7 +25,7 @@
         }
         nav {
             background-color: black; /* 导航栏底色设置为黑色 */
-            padding: 20px 0; /* 导航栏的内边距设置为固定 */
+            padding: 10px 0; /* 导航栏的内边距设置为固定 */
             text-align: center;
             white-space: nowrap; /* 防止按钮换行 */
             transition: padding 0.3s; /* 导航栏的过渡效果 */
@@ -82,7 +82,7 @@
             color: white; /* 深色模式导航栏文字颜色 */
         }
         nav a.dark-mode:active {
-            color: #68b6fc; /* 深色模式下按钮点按时文字颜色 */
+            color: black; /* 深色模式下按钮点按时文字颜色 */
         }
         main.dark-mode {
             background-color: #1e1e1e; /* 深色模式主内容背景 */
@@ -110,21 +110,26 @@
                 activeSection.classList.add('active'); // 显示当前部分
             }
         }
-        
         // 处理页面滚动
-        window.onscroll = function() {
-            const nav = document.querySelector('nav');
-            const logo = document.querySelector('header img');
-            const top = window.pageYOffset || document.documentElement.scrollTop;
+window.onscroll = function() {
+    const nav = document.querySelector('nav');
+    const logo = document.querySelector('header img');
+    const top = window.pageYOffset || document.documentElement.scrollTop;
+    const isDarkMode = document.body.classList.contains('dark-mode'); // 检查是否为深色模式
 
-            if (top > 0) {
-                nav.style.padding = '10px 0'; // 收缩导航栏的内边距
-                logo.src = "watson英文字体_白色psb.png"; // 上滑后显示白色logo
-            } else {
-                nav.style.padding = '20px 0'; // 恢复导航栏的内边距
-                logo.src = "watson英文字体_黑色.png"; // 恢复为黑色logo
-            }
-        };
+    if (top > 0) {
+        nav.style.position = 'fixed';
+        nav.style.top = '0';
+        nav.style.width = '100%';
+        nav.style.zIndex = '1000';
+        logo.src = isDarkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据模式设置Logo
+        nav.style.padding = '10px 0'; // 收缩导航栏的内边距
+    } else {
+        nav.style.position = 'relative';
+        logo.src = isDarkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据模式设置Logo
+        nav.style.padding = '20px 0'; // 恢复导航栏的内边距
+    }
+};
 
         // 深色模式检测
         function updateTheme() {
