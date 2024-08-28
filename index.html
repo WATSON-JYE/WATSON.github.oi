@@ -92,7 +92,6 @@
         }
     </style>
     <script>
-        // JavaScript函数用于显示相应的内容部分
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
@@ -103,23 +102,24 @@
                 activeSection.classList.add('active'); // 显示当前部分
             }
         }
-        
-        // 处理页面滚动
+
+        // 处理页面滚动和logo切换
         window.onscroll = function() {
             const nav = document.querySelector('nav');
             const logo = document.querySelector('header img');
             const top = window.pageYOffset || document.documentElement.scrollTop;
+            const darkMode = document.body.classList.contains('dark-mode');
 
             if (top > 0) {
                 nav.style.position = 'fixed';
                 nav.style.top = '0';
                 nav.style.width = '100%';
                 nav.style.zIndex = '1000';
-                logo.src = "watson英文字体_白色psb.png"; // 上滑后显示白色logo
+                logo.src = darkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据深色模式切换logo
                 nav.style.padding = '10px 0'; // 收缩导航栏的内边距
             } else {
                 nav.style.position = 'relative';
-                logo.src = "watson英文字体_黑色.png"; // 恢复为黑色logo
+                logo.src = darkMode ? "watson英文字体_白色psb.png" : "watson英文字体_黑色.png"; // 根据深色模式切换logo
                 nav.style.padding = '20px 0'; // 恢复导航栏的内边距
             }
         };
@@ -132,6 +132,7 @@
             const nav = document.querySelector('nav');
             const links = document.querySelectorAll('nav a');
             const main = document.querySelector('main');
+            const logo = document.querySelector('header img');
 
             if (darkMode) {
                 body.classList.add('dark-mode');
@@ -139,14 +140,17 @@
                 nav.classList.add('dark-mode');
                 links.forEach(link => link.classList.add('dark-mode'));
                 main.classList.add('dark-mode');
+                logo.src = "watson英文字体_白色psb.png"; // 深色模式下使用白色logo
             } else {
                 body.classList.remove('dark-mode');
                 header.classList.remove('dark-mode');
                 nav.classList.remove('dark-mode');
                 links.forEach(link => link.classList.remove('dark-mode'));
                 main.classList.remove('dark-mode');
+                logo.src = "watson英文字体_黑色.png"; // 浅色模式下使用黑色logo
             }
         }
+        
         // 监听页面加载和主题变化
         window.onload = updateTheme;
         window.matchMedia('(prefers-color-scheme: dark)').addListener(updateTheme);
