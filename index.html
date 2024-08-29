@@ -203,18 +203,27 @@ window.onscroll = function() {
         transition: background-color 0.3s, color 0.3s; /* 过渡效果 */
     }
 /* 首页部分样式 */
-.home-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #111111; /* 设置背景颜色 */
-    height: 100vh; /* 使其占满整个视口高度 */
+main {
+    padding: 0; /* 去除内边距 */
+    margin: 0; /* 去除外边距 */
+    max-width: 100%; /* 使主内容宽度为100% */
+    background-color: #111111; /* 设置背景颜色为#111111 */
+    /* 去除边框和阴影 */
 }
 
+section {
+    display: none; /* 默认隐藏所有部分 */
+    margin-bottom: 0; /* 去除各部分之间的间距 */
+    padding: 20px; /* 可选：根据需要添加内边距 */
+}
+
+section.active {
+    display: block; /* 显示当前激活的部分 */
+}
 .profile-photo {
-    width: 30%; /* 头像宽度 */
+    width: 50%; /* 头像宽度 */
     opacity: 0; /* 初始透明度 */
-    animation: fadeIn 1s forwards; /* 逐渐显示动画 */
+    animation: fadeIn 2s forwards; /* 逐渐显示动画 */
 }
 
 .text-content {
@@ -239,19 +248,19 @@ window.onscroll = function() {
 
 /* 单独为每一行文本设置不同的动画延迟 */
 .text-content h1 {
-    animation-delay: 0.5s;
-}
-.text-content h2 {
-    animation-delay: 1s;
-}
-.text-content p:nth-child(3) {
     animation-delay: 1.5s;
 }
-.text-content p:nth-child(4) {
+.text-content h2 {
     animation-delay: 2s;
 }
-.text-content p:nth-child(5) {
+.text-content p:nth-child(3) {
     animation-delay: 2.5s;
+}
+.text-content p:nth-child(4) {
+    animation-delay: 3s;
+}
+.text-content p:nth-child(5) {
+    animation-delay: 3.5s;
 }
     /* 适配移动端 */
     @media (max-width: 600px) {
