@@ -322,8 +322,7 @@ main {
         
         <!-- 项目展示部分 -->
         <section id="projects">
-            <h2>项目展示</h2>
-           <nav>
+        <nav>
     <ul>
         <li>首页</li>
         <li>项目展示
@@ -360,7 +359,7 @@ main {
         </li>
     </ul>
 </nav>
-            nav {
+nav {
     background-color: #333; /* 导航栏背景色 */
     padding: 10px 20px; /* 内边距 */
 }
@@ -377,6 +376,7 @@ nav li {
     position: relative; /* 定位子菜单 */
     color: white; /* 主菜单字体颜色 */
     margin-right: 20px; /* 菜单项间距 */
+    cursor: pointer; /* 鼠标悬停为手型 */
 }
 
 nav li:hover {
@@ -391,6 +391,7 @@ nav li:hover {
     background-color: white; /* 子菜单背景色 */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影效果 */
     z-index: 1000; /* 确保在最上面 */
+    min-width: 200px; /* 设置子菜单最小宽度 */
 }
 
 nav li:hover .submenu {
@@ -405,6 +406,7 @@ nav li:hover .submenu {
     color: #858585; /* 二级标题颜色 */
     cursor: default; /* 禁止点击 */
     margin: 0; /* 去除外边距 */
+    font-weight: bold; /* 加粗 */
 }
 
 .submenu a {
@@ -414,8 +416,9 @@ nav li:hover .submenu {
 
 .submenu a:hover {
     background-color: #f9f9f9; /* 悬停时背景色 */
-}
-            
+    color: #313131; /* 悬停时字体颜色 */
+    padding: 10px; /* 添加内边距 */
+}     
         
         <!-- 联系方式部分 -->
         <section id="contact">
