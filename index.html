@@ -323,8 +323,99 @@ main {
         <!-- 项目展示部分 -->
         <section id="projects">
             <h2>项目展示</h2>
-            <p>这里是我的作品和个人成绩展示。</p>
-        </section>
+           <nav>
+    <ul>
+        <li>首页</li>
+        <li>项目展示
+            <ul class="submenu">
+                <li class="section-title">服装设计</li>
+                <li><a href="#gobi">戈壁</a></li>
+                <li><a href="#yisheng">彝生彝韵</a></li>
+                <li><a href="#qingwan">青碗鳌头</a></li>
+                <li><a href="#xunhua">驯化</a></li>
+                <li><a href="#shenhai">深海魅影</a></li>
+                <li><a href="#nahan">呐喊</a></li>
+                <li><a href="#qiongyan">琼筵</a></li>
+
+                <li class="section-title">时尚摄影</li>
+                <li><a href="#bamboo">bamboo</a></li>
+
+                <li class="section-title">配饰设计</li>
+                <li><a href="#maya">玛雅迷踪</a></li>
+                <li><a href="#accessory">Accessory Design</a></li>
+                <li><a href="#jiangnan">江南竹韵</a></li>
+                <li><a href="#queen">queen</a></li>
+
+                <li class="section-title">海报设计</li>
+                <li><a href="#student">学生会系列</a></li>
+                <li><a href="#public">公益类</a></li>
+                <li><a href="#events">赛事类</a></li>
+                <li><a href="#other">其他类</a></li>
+
+                <li class="section-title">logo设计</li>
+                <li><a href="#college">西华师范大学政治与行政学院院徽</a></li>
+                <li><a href="#fengyun">丰云服装制造有限公司</a></li>
+                <li><a href="#xiaoxiang">小香包早餐店（中端）</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+            nav {
+    background-color: #333; /* 导航栏背景色 */
+    padding: 10px 20px; /* 内边距 */
+}
+
+nav ul {
+    list-style: none; /* 去除列表样式 */
+    margin: 0; /* 去除外边距 */
+    padding: 0; /* 去除内边距 */
+    position: relative; /* 使子菜单定位 */
+}
+
+nav li {
+    display: inline-block; /* 水平排列 */
+    position: relative; /* 定位子菜单 */
+    color: white; /* 主菜单字体颜色 */
+    margin-right: 20px; /* 菜单项间距 */
+}
+
+nav li:hover {
+    color: #ccc; /* 悬停时主菜单颜色 */
+}
+
+.submenu {
+    display: none; /* 默认隐藏子菜单 */
+    position: absolute; /* 绝对定位 */
+    left: 0; /* 左对齐 */
+    top: 100%; /* 在主菜单下方 */
+    background-color: white; /* 子菜单背景色 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+    z-index: 1000; /* 确保在最上面 */
+}
+
+nav li:hover .submenu {
+    display: block; /* 悬停时显示子菜单 */
+}
+
+.submenu li {
+    padding: 10px; /* 内边距 */
+}
+
+.section-title {
+    color: #858585; /* 二级标题颜色 */
+    cursor: default; /* 禁止点击 */
+    margin: 0; /* 去除外边距 */
+}
+
+.submenu a {
+    color: #313131; /* 三级按钮颜色 */
+    text-decoration: none; /* 去除下划线 */
+}
+
+.submenu a:hover {
+    background-color: #f9f9f9; /* 悬停时背景色 */
+}
+            
         
         <!-- 联系方式部分 -->
         <section id="contact">
