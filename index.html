@@ -178,13 +178,61 @@ window.onscroll = function() {
         <a href="javascript:void(0)" onclick="showSection('contact')">联系方式</a> <!-- 联系方式 -->
         <a href="javascript:void(0)" onclick="showSection('social')">社交媒体</a> <!-- 社交媒体 -->
     </nav>
+
+    <style>
+    /* 首页部分的样式 */
+    #home {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #111111; /* 页面背景颜色 */
+        padding: 40px;
+        color: #19dd27; /* 文字颜色设置为绿色 */
+    }
+
+    #home img {
+        max-width: 200px; /* 控制图片的最大宽度 */
+        opacity: 0;
+        animation: fadeIn 2s forwards; /* 图片逐渐显示动画 */
+    }
+
+    #home .text-content {
+        max-width: 60%;
+        opacity: 0;
+        animation: textFadeIn 3s forwards; /* 文字逐排渐显动画 */
+        animation-delay: 2s; /* 文字动画延迟，以在图片之后显示 */
+    }
+
+    /* 图片渐显动画 */
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* 文字逐排渐显动画 */
+    @keyframes textFadeIn {
+        0%, 20% {
+            opacity: 0;
+        }
+        25%, 100% {
+            opacity: 1;
+        }
+    }
+</style>
     
     <main>
         <!-- 首页部分 -->
-        <section id="home" class="active">
-            <h2>首页</h2>
-            <p>欢迎来到我的个人网站！这里是我的作品、联系方式和社交媒体信息。</p>
-        </section>
+    <section id="home" class="active">
+    <img src="汪士杰证件照.png" alt="汪士杰证件照">
+    <div class="text-content">
+        <p>汪士杰 （Shijie Wang）</p>
+        <p>WATSON</p>
+        <p>2002/05/08</p>
+        <p>中国四川成都简阳</p>
+        <p>Jianyang, Chengdu, Sichuan, China</p>
+    </div>
+</section>
         
         <!-- 项目展示部分 -->
         <section id="projects">
