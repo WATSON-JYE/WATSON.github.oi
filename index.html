@@ -180,19 +180,21 @@ window.onscroll = function() {
     </nav>
     
     <main>
-       <!-- 首页部分 -->
-<section id="home" class="active">
-    <div class="home-content">
-        <img src="汪士杰证件照.png" alt="汪士杰证件照" class="profile-photo" />
-        <div class="text-content">
-            <h1 style="color: #19dd27;">汪士杰 （Shijie Wang）</h1>
-            <h2 style="color: #19dd27;">WATSON</h2>
-            <p style="color: #19dd27;">2002/05/08</p>
-            <p style="color: #19dd27;">中国四川成都简阳</p>
-            <p style="color: #19dd27;">Jianyang, Chengdu, Sichuan, China</p>
+    <!-- 首页部分 -->
+    <section id="home" class="active">
+        <div class="intro">
+            <img src="汪士杰证件照.png" alt="汪士杰证件照" />
+            <div class="intro-text">
+                <p>汪士杰 （Shijie Wang）</p>
+                <p>WATSON</p>
+                <p>2002/05/08</p>
+                <p>中国四川成都简阳</p>
+                <p>Jianyang, Chengdu, Sichuan, China</p>
+            </div>
         </div>
-    </div>
-</section> 
+    </section>
+</main>
+        
         <style>
     body {
         font-family: 'Roboto', sans-serif;
@@ -242,37 +244,64 @@ section.active {
     opacity: 0; /* 初始透明度 */
     animation: fadeInText 1s forwards; /* 逐渐显示动画 */
 }
-
-@keyframes fadeIn {
-    to { opacity: 1; }
+main {
+    padding: 0; /* 移除内边距 */
+    margin: 0; /* 移除外边距 */
+    background-color: #111111; /* 设置页面背景颜色 */
+    display: flex; /* 使用Flexbox布局 */
+    align-items: flex-start; /* 垂直对齐顶部 */
+    justify-content: center; /* 水平居中 */
 }
 
-@keyframes fadeInText {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+.intro {
+    display: flex; /* 水平排列图像和文本 */
+    align-items: center; /* 垂直居中对齐 */
+    margin-top: 20px; /* 上方间距 */
 }
 
-.text-content p {
-    animation: fadeInText 1s forwards; /* 逐排渐显动画 */
+.intro img {
+    max-height: 150px; /* 图像最大高度 */
+    margin-right: 20px; /* 图像与文本间距 */
+}
+
+.intro-text {
+    color: #19dd27; /* 文本颜色 */
+    font-size: 18px; /* 文本大小 */
     opacity: 0; /* 初始透明度 */
+    animation: fadeIn 1s forwards; /* 动画效果 */
 }
 
-/* 单独为每一行文本设置不同的动画延迟 */
-.text-content h1 {
-    animation-delay: 1.5s;
+.intro-text p {
+    margin: 0; /* 去除段落外边距 */
 }
-.text-content h2 {
-    animation-delay: 2s;
+
+/* 逐排渐显的动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
-.text-content p:nth-child(3) {
-    animation-delay: 2.5s;
+
+/* 逐排渐显的效果 */
+.intro-text p:nth-child(1) {
+    animation-delay: 0.5s; /* 第一个段落延迟0.5秒 */
 }
-.text-content p:nth-child(4) {
-    animation-delay: 3s;
+
+.intro-text p:nth-child(2) {
+    animation-delay: 1s; /* 第二个段落延迟1秒 */
 }
-.text-content p:nth-child(5) {
-    animation-delay: 3.5s;
+
+.intro-text p:nth-child(3) {
+    animation-delay: 1.5s; /* 第三个段落延迟1.5秒 */
 }
+
+.intro-text p:nth-child(4) {
+    animation-delay: 2s; /* 第四个段落延迟2秒 */
+}
+            
     /* 适配移动端 */
     @media (max-width: 600px) {
         #home {
